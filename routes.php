@@ -1,10 +1,12 @@
 <?php
-$router->get("/", "index.php")->only('auth');
+$router->get("/", "index.php");
 $router->get("/login", "login/index.php")->only('guest');
 $router->post("/login", "login/store.php")->only('guest');
 
 $router->get("/register", "register/index.php")->only('guest');
 $router->post("/register", "register/store.php")->only('guest');
+
+$router->get("/detail", "detail/index.php");
 
 /// admin
 $router->get("/admin", "admin/index.php")->only('auth');
