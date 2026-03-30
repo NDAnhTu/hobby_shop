@@ -17,7 +17,7 @@
                     <div class="item-info">
                         <p class="category"><?= $product['category_name'] ?></p>
                         <p class="product-name"><?= $product['name'] ?></p>
-                        <p class="price"><?= $product['price'] ?></p>
+                        <p class="price"><?= moneyFormat($product['price']) ?></p>
                         <div class="cart-button">
                             <i class="fa-solid fa-cart-arrow-down"></i>
                             <p>Mua</p>

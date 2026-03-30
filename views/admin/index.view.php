@@ -29,7 +29,7 @@
                         <td><strong><?= $product['name'] ?></strong></td>
                         <td><span style="background:#eee; padding:5px 10px; border-radius:15px; font-size:12px;"><?= $product['brand_name'] ?></span></td>
                         <td><span style="background:#eee; padding:5px 10px; border-radius:15px; font-size:12px;"><?= $product['category_name'] ?></span></td>
-                        <td><?= $product['price'] ?></td>
+                        <td><?= moneyFormat($product['price']) ?></td>
                         <td>
                             <div class="action">
                                 <form action="/admin/destroy-product" method="POST">

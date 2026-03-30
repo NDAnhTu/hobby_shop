@@ -1,13 +1,21 @@
 <nav class="nav-bar">
     <a href="/" class="logo"><i class="fa-solid fa-robot"></i> Hobby<span>Space</span></a>
     <?php if (isLoggedIn()) : ?>
-        <div class="dropdown">
-            <a href="/" class="nav-links"><?= $_SESSION['user']['name'] ?></a>
-            <div class="dropdown-content">
-                <div class="dropdown-action">
-                    <form action="/logout" method="POST">
-                        <button type="submit">Logout</button>
-                    </form>
+        <div class="user-action">
+            <a href="/cart" class="nav-links cart-icon-container">
+                <i class="fa-solid fa-cart-arrow-down"></i>
+                <?php if (cartCount() > 0) : ?>
+                    <span class="cart-badge" id="nav-cart-count"><?= cartCount() ?></span>
+                <?php endif; ?>
+            </a>
+            <div class="dropdown">
+                <a href="/" class="nav-links"><?= $_SESSION['user']['name'] ?></a>
+                <div class="dropdown-content">
+                    <div class="dropdown-action">
+                        <form action="/logout" method="POST">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

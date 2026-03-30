@@ -96,3 +96,24 @@ function isLoggedIn()
 {
     return isset($_SESSION['user']);
 }
+
+function moneyFormat($data)
+{
+    return number_format($data, 0, ',', '.');
+}
+
+function cartCount()
+{
+    if (!isLoggedIn()) {
+        return 0;
+    }
+
+    $db = new \Core\Database();
+    $user = $_SESSION['user'];
+
+    $result = $db->query("SELECT COUNT(*) as count FROM cart WHERE user_id = :user_id", [
+        'user_id' => $user['id']
+    ])->getOnce();
+
+    return $result['count'] ?? 0;
+}

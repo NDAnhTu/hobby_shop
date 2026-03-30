@@ -30,3 +30,8 @@ $router->get("/admin/brands", "admin/brand/index.php")->only('auth');
 $router->get("/admin/create-brand", "admin/brand/create.php")->only('auth');
 $router->post("/admin/store-brand", "admin/brand/store.php")->only('auth');
 $router->post("/admin/delete-brand", "admin/brand/destroy.php")->only('auth');
+
+$router->get("/cart", "cart/index.php")->only('auth');
+$router->post("/cart", "cart/store.php")->only('auth');
+$router->post("/cart-delete", "cart/destroy.php")->only('auth');
+$router->post("/cart-update", "cart/update.php")->only('auth');
