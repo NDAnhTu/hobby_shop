@@ -10,6 +10,7 @@ $router->get("/detail", "detail/index.php");
 
 /// admin
 $router->get("/admin", "admin/index.php")->only('auth');
+$router->post("/logout", "auth/destroy.php")->only('auth');
 
 // product
 $router->get("/admin/create-product", "admin/product/create.php")->only('auth');
