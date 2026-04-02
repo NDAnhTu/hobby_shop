@@ -31,7 +31,12 @@ $router->get("/admin/create-brand", "admin/brand/create.php")->only('auth');
 $router->post("/admin/store-brand", "admin/brand/store.php")->only('auth');
 $router->post("/admin/delete-brand", "admin/brand/destroy.php")->only('auth');
 
+// cart
 $router->get("/cart", "cart/index.php")->only('auth');
 $router->post("/cart", "cart/store.php")->only('auth');
 $router->post("/cart-delete", "cart/destroy.php")->only('auth');
 $router->post("/cart-update", "cart/update.php")->only('auth');
+
+// checkout
+$router->get("/checkout", "checkout/index.php")->only('auth');
+$router->post("/checkout-conplete", "checkout/store.php")->only('auth');

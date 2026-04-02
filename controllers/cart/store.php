@@ -17,7 +17,7 @@ if (! $check) {
         'user_id' => $user['id'],
         'quantity' => 1
     ]);
-    redirect('/');
+    redirect('/cart');
 }
 
 $quantity = $check['quantity'] += 1;
@@ -28,4 +28,4 @@ $db->query("UPDATE cart SET quantity = :quantity WHERE product_id = :product_id 
     'quantity' => $quantity
 ]);
 
-redirect('/');
+redirect('/cart');

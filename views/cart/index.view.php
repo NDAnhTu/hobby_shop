@@ -63,7 +63,7 @@
                 <span id="total"><?= moneyFormat($subtotal) ?>đ</span>
             </div>
 
-            <a href="#" class="btn-checkout">Thanh toán ngay</a>
+            <a href="/checkout" class="btn-checkout">Thanh toán ngay</a>
         </div>
     </div>
 </div>

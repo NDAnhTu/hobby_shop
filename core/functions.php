@@ -111,7 +111,7 @@ function cartCount()
     $db = new \Core\Database();
     $user = $_SESSION['user'];
 
-    $result = $db->query("SELECT COUNT(*) as count FROM cart WHERE user_id = :user_id", [
+    $result = $db->query("SELECT COUNT(*) as count FROM cart WHERE user_id = :user_id AND order_id = 0", [
         'user_id' => $user['id']
     ])->getOnce();
 

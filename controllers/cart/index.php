@@ -25,7 +25,7 @@ LEFT JOIN categories as ca
 ON p.category = ca.id
 LEFT JOIN brands as b 
 ON p.brand = b.id
-WHERE c.user_id = :user_id', [
+WHERE c.user_id = :user_id AND order_id = 0', [
     "user_id" => $user['id'],
 ])->getAll();
 
