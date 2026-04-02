@@ -986,6 +986,17 @@ body {
     box-shadow: 0 10px 20px rgba(74, 74, 226, 0.2);
 }
 
+.admin-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-title a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
 @media (max-width: 992px) {
     .checkout-container {
         grid-template-columns: 1fr;

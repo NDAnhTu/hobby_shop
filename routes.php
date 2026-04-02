@@ -43,3 +43,5 @@ $router->post("/checkout-conplete", "checkout/store.php")->only('auth');
 
 // admin orders
 $router->get("/admin/orders", "admin/orders/index.php")->only('auth');
+$router->get("/admin/orders/export", "admin/orders/export.php")->only('auth');
+$router->post("/admin/orders/import", "admin/orders/import.php")->only('auth');

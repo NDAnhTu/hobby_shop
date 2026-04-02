@@ -3,7 +3,25 @@
 
 <div class="main">
     <div class="panel">
-        <p class="title">Quản lý đơn hàng</p>
+        <?php if (isset($_SESSION['success'])) : ?>
+            <p style="background: #e8f5e9; color: #2e7d32; padding: 10px; border-radius: 5px; margin-bottom: 20px;"><?= $_SESSION['success'] ?></p>
+            <?php unset($_SESSION['success']) ?>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['error'])) : ?>
+            <p style="background: #ffebee; color: #c62828; padding: 10px; border-radius: 5px; margin-bottom: 20px;"><?= $_SESSION['error'] ?></p>
+            <?php unset($_SESSION['error']) ?>
+        <?php endif; ?>
+
+        <div class="admin-title">
+            <p class="title">Quản lý đơn hàng</p>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <form action="/admin/orders/import" method="POST" enctype="multipart/form-data" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="file" name="csv_file" required style="font-size: 14px;">
+                    <button type="submit" style="background: #34495e; color: white; padding: 5px 15px; border: none; border-radius: 5px; cursor: pointer;">Import</button>
+                </form>
+                <a href="/admin/orders/export" style="background: #27ae60; color: white; padding: 8px 20px; border-radius: 5px; font-weight: bold; font-size: 14px; text-decoration: none;">Export</a>
+            </div>
+        </div>
 
         <table class="admin-table">
             <thead>
