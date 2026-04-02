@@ -8,6 +8,7 @@
             <a href="/admin/create-product" class="add">Thêm sản phẩm mới</a>
             <a href="/admin/categories" class="add-category">Quản lí danh mục</a>
             <a href="/admin/brands" class="add">Quản lí nhãn hàng</a>
+            <a href="/admin/orders" class="add-category">Quản lí đơn hàng</a>
         </div>
         <table class="admin-table">
             <thead>

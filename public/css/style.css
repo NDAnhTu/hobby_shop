@@ -527,6 +527,9 @@ body {
 .dropdown-action a {
     text-decoration: none;
     color: var(--dark-color);
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .dropdown-action button {
@@ -889,11 +892,41 @@ body {
     color: #2d3436;
     margin-bottom: 4px;
     display: block;
-    width: 200px; /* Thêm độ rộng cố định để truncation hoạt động */
+    width: 200px;
+    /* Thêm độ rộng cố định để truncation hoạt động */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* STATUS BADGES */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.status-pending {
+    background-color: #fff8e1;
+    color: #ff8f00;
+}
+
+.status-delivered {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.btn-view {
+    text-decoration: none;
+    color: #6c5ce7;
+    font-weight: 500;
+}
+
+.btn-view:hover {
+    text-decoration: underline;
+}
+
 
 .checkout-product-qty {
     font-size: 0.85rem;

@@ -40,3 +40,6 @@ $router->post("/cart-update", "cart/update.php")->only('auth');
 // checkout
 $router->get("/checkout", "checkout/index.php")->only('auth');
 $router->post("/checkout-conplete", "checkout/store.php")->only('auth');
+
+// admin orders
+$router->get("/admin/orders", "admin/orders/index.php")->only('auth');

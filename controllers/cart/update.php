@@ -14,7 +14,7 @@ $id = $_POST['id'];
 $action = $_POST['action'];
 $user = $_SESSION['user'];
 
-$item = $db->query("SELECT * FROM cart WHERE id = :id AND user_id = :user_id", [
+$item = $db->query("SELECT * FROM cart WHERE id = :id AND user_id = :user_id AND order_id = 0", [
     'id' => $id,
     'user_id' => $user['id']
 ])->getOnce();
@@ -33,7 +33,7 @@ if ($action === 'increase') {
 }
 
 if ($newQuantity !== $item['quantity']) {
-    $db->query("UPDATE cart SET quantity = :quantity WHERE id = :id", [
+    $db->query("UPDATE cart SET quantity = :quantity WHERE id = :id AND order_id = 0", [
         'id' => $id,
         'quantity' => $newQuantity
     ]);
@@ -43,7 +43,13 @@ $product = $db->query("SELECT price FROM products WHERE id = :product_id", [
     'product_id' => $item['product_id']
 ])->getOnce();
 
-$cartItems = $db->query("SELECT c.quantity, p.price FROM cart c JOIN products p ON c.product_id = p.id WHERE c.user_id = :user_id", [
+if (!$product) {
+    header('Content-Type: application/json', true, 404);
+    echo json_encode(['success' => false, 'error' => 'Product not found']);
+    exit;
+}
+
+$cartItems = $db->query("SELECT c.quantity, p.price FROM cart c JOIN products p ON c.product_id = p.id WHERE c.user_id = :user_id AND c.order_id = 0", [
     'user_id' => $user['id']
 ])->getAll();
 
@@ -51,16 +57,16 @@ $total = 0;
 $totalCount = 0;
 foreach ($cartItems as $ci) {
     $total += $ci['price'] * $ci['quantity'];
-    $totalCount += 1;
+    $totalCount += $ci['quantity']; // Sum of quantities
 }
 
 header('Content-Type: application/json');
 echo json_encode([
     'success' => true,
-    'newQuantity' => $newQuantity,
+    'newQuantity' => (int)$newQuantity,
     'itemPrice' => moneyFormat($product['price'] * $newQuantity) . 'đ',
     'total' => moneyFormat($total) . 'đ',
     'subtotal' => moneyFormat($total) . 'đ',
-    'totalCartCount' => $totalCount
+    'totalCartCount' => (int)$totalCount
 ]);
 exit;
