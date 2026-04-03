@@ -60,7 +60,7 @@
 
                 <?php if (empty($orders)) : ?>
                     <tr>
-                        <td colspan="6" style="text-align: center; padding: 40px; color: #999;">Chưa có đơn hàng nào.</td>
+                        <td colspan="7" style="text-align: center; padding: 40px; color: #999;">Chưa có đơn hàng nào.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

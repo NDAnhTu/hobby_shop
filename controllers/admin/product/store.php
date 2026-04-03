@@ -48,9 +48,7 @@ if (hasError()) {
 
 if (isset($image) && $image['error'] === UPLOAD_ERR_OK) {
     $originalName = $image['name'];
-    // Sử dụng pathinfo để lấy phần mở rộng (ví dụ: "png")
     $extension = pathinfo($originalName, PATHINFO_EXTENSION);
-    // Kết hợp với uniqid để tạo tên file mới
     $imageName = uniqid() . '.' . $extension;
     $moveFile = move_uploaded_file($image['tmp_name'], base_path('public/images/') . $imageName);
     if (!$moveFile) {
