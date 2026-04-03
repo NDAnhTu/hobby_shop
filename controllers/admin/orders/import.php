@@ -47,11 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["csv_file"])) {
         fclose($handle);
 
         $_SESSION['success'] = "Đã cập nhật $successCount đơn hàng thành công!";
-        header("Location: /admin/orders");
-        exit();
+        redirect('/admin/orders');
     }
 }
 
 $_SESSION['error'] = "Vui lòng chọn file CSV.";
-header("Location: /admin/orders");
-exit();
+redirect('/admin/orders');
