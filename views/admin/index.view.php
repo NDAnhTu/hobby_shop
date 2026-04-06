@@ -7,6 +7,7 @@
         <div class="action-button">
             <a href="/admin/create-product" class="add">Thêm sản phẩm mới</a>
             <a href="/admin/categories" class="add-category">Quản lí danh mục</a>
+            <a href="/admin/products/export" class="add">Xuất CSV Sản Phẩm</a>
             <a href="/admin/brands" class="add">Quản lí nhãn hàng</a>
             <a href="/admin/orders" class="add-category">Quản lí đơn hàng</a>
         </div>
@@ -27,6 +28,7 @@
                     <tr>
                         <td><?= $product['id'] ?></td>
                         <td><img src="<?= "/images//" . $product['image'] ?>" style="width:100px; height:100px; object-fit:cover; border-radius:5px;"></td>
+                        </td>
                         <td><strong><?= $product['name'] ?></strong></td>
                         <td><span style="background:#eee; padding:5px 10px; border-radius:15px; font-size:12px;"><?= $product['brand_name'] ?></span></td>
                         <td><span style="background:#eee; padding:5px 10px; border-radius:15px; font-size:12px;"><?= $product['category_name'] ?></span></td>
@@ -37,12 +39,9 @@
                                     <input type="hidden" name="id" value="<?= $product['id'] ?>">
                                     <button class="btn-delete" data-id="${p.id}"><i class="fa-solid fa-trash"></i></button>
                                 </form>
-                                <a href="admin/edit-product?id=<?= $product['id'] ?>">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
+                                <a href="admin/edit-product?id=<?= $product['id'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                             </div>
                         </td>
-
                     </tr>
                 <?php endforeach; ?>
             </tbody>
