@@ -36,24 +36,33 @@ if (empty($shipping_id)) {
 }
 
 if (! empty($shippingInfo)) {
-    $db->query("INSERT INTO orders (user_id, status, order_date) VALUES (:user_id, :status, :order_date)", [
-        'user_id' => $user['id'],
-        'status' => 'pending',
-        'order_date' => date("Y-m-d H:i:s"),
-    ]);
-
-    $latestOrder = $db->query("SELECT * FROM orders WHERE user_id = :user_id ORDER BY order_date DESC LIMIT 1", [
-        'user_id' => $user['id']
-    ])->getOnce();
-
-    foreach ($currentCart as $cart) {
-        $db->query("UPDATE cart SET order_id = :order_id WHERE id = :id", [
-            'order_id' => $latestOrder['id'],
-            'id' => $cart['id']
+    try {
+        $db->beginTransaction();
+        $db->query("INSERT INTO orders (user_id, status, order_date) VALUES (:user_id, :status, :order_date)", [
+            'user_id' => $user['id'],
+            'status' => 'pending',
+            'order_date' => date("Y-m-d H:i:s"),
         ]);
+        $latestOrder = $db->query("SELECT * FROM orders WHERE user_id = :user_id ORDER BY order_date DESC LIMIT 1", [
+            'user_id' => $user['id']
+        ])->getOnce();
+
+        foreach ($currentCart as $cart) {
+            $db->query("UPDATE cart SET order_id = :order_id WHERE id = :id", [
+                'order_id' => $latestOrder['id'],
+                'id' => $cart['id']
+            ]);
+        }
+        $db->commit();
+    } catch (\Throwable $e) {
+        if ($db->inTransaction()) {
+            $db->rollback();
+        }
+        setError('checkout_error', 'Has an error! ' . $e->getMessage());
+        redirect('/checkout');
     }
 
-    view('checkout/success.view.php');
+    view('/checkout/success.view.php');
 } else {
     abort(400);
 }

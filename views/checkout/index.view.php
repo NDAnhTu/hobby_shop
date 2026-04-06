@@ -23,18 +23,6 @@
                         <input type="text" id="address" name="address" placeholder="Số nhà, tên đường, phường/xã..." required value="<?= !empty($shipping_info) ? $shipping_info['address'] : "" ?>">
                     </div>
                 </div>
-
-                <!-- <h2 class="checkout-section-title" style="margin-top: 40px;">Phương thức thanh toán</h2>
-                <div class="payment-methods">
-                    <label class="payment-method-item">
-                        <input type="radio" name="payment_method" value="cod" checked>
-                        <span>Thanh toán khi nhận hàng (COD)</span>
-                    </label>
-                    <label class="payment-method-item">
-                        <input type="radio" name="payment_method" value="bank">
-                        <span>Chuyển khoản ngân hàng</span>
-                    </label>
-                </div> -->
             </form>
         </div>
 
@@ -80,6 +68,9 @@
                     </div>
                 </div>
                 <button type="submit" form="checkout-form" class="btn-order-now">ĐẶT HÀNG NGAY</button>
+                <?php if (hasError('checkout_error')) : ?>
+                    <p class="input-error"> <?= getError('checkout_error') ?></p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
