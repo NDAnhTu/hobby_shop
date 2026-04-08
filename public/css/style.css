@@ -1081,3 +1081,21 @@ body {
     margin-top: 10px;
     align-self: flex-start;
 }
+
+.pages {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pages a {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.page-active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
