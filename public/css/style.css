@@ -1076,3 +1076,8 @@ body {
         gap: 20px;
     }
 }
+
+.remember-me {
+    margin-top: 10px;
+    align-self: flex-start;
+}

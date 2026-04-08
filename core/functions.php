@@ -1,6 +1,7 @@
 <?php
 
 use Core\Response;
+use Core\Database;
 
 function dd($value)
 {
@@ -88,6 +89,10 @@ function jsonResponse($data, $statusCode = 200)
 
 function logout()
 {
+    $db = new Database();
+    $db->query("DELETE FROM session_token WHERE user_id = :user_id", [
+        "user_id" => $_SESSION['user']['id']
+    ]);
     $_SESSION = [];
     redirect('/');
 }
@@ -116,4 +121,24 @@ function cartCount()
     ])->getOnce();
 
     return $result['count'] ?? 0;
+}
+
+function checkKeepLogin()
+{
+    $db = new Database();
+    if (isset($_COOKIE['remember_token'])) {
+        $token = $db->query("SELECT * FROM session_token WHERE token = :token ORDER BY id DESC LIMIT 1", [
+            "token" => $_COOKIE['remember_token']
+        ])->getOnce();
+        if (!empty($token)) {
+            $user = $db->query("SELECT * FROM users WHERE id = :id", [
+                "id" => $token['id']
+            ])->getOnce();
+            $_SESSION['user'] = [
+                "email" => $user['email'],
+                "name" => $user['name'],
+                "id" => $user['id']
+            ];
+        }
+    }
 }

@@ -31,6 +31,17 @@ if (! $user) {
 }
 
 if (password_verify($password, $user['password'])) {
+
+    if (isset($_POST['remember'])) {
+        $token = bin2hex(random_bytes(32));
+        $db->query("INSERT INTO session_token (user_id, token) VALUES (:user_id, :token)", [
+            'user_id' => $user['id'],
+            'token' => $token
+        ]);
+        setcookie('remember_token', $token, time() + (86400 * 30), "/", "", false, true);
+    }
+
+    session_regenerate_id(true);
     $_SESSION['user'] = [
         "email" => $user['email'],
         "name" => $user['name'],

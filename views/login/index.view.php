@@ -22,6 +22,10 @@
                 <p class="input-error"> <?= getError('password') ?></p>
             <?php endif; ?>
         </div>
+        <div class="remember-me">
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">Ghi nhớ đăng nhập</label>
+        </div>
         <button type="submit">
             Đăng nhập
         </button>
