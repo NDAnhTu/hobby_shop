@@ -4,7 +4,7 @@ use Core\Database;
 
 $db = new Database();
 $page = $_GET['page'] ?? 1;
-$product_per_page = 6;
+$product_per_page = 3;
 $offset = ($page - 1) * $product_per_page;
 $numberOfProducts = $db->query("SELECT COUNT(id) as count FROM products")->getOnce();
 $pages = ceil($numberOfProducts['count'] / $product_per_page);

@@ -48,3 +48,6 @@ $router->get("/admin/orders/export", "admin/orders/export.php")->only('auth');
 $router->post("/admin/orders/import", "admin/orders/import.php")->only('auth');
 $router->get("/admin/products/export", "admin/product_export.php")->only('auth');
 $router->post("/admin/orders/destroy", "admin/orders/destroy.php")->only('auth');
+
+// search
+$router->get('/search', 'search/index.php')->only('auth');
